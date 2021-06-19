@@ -42,7 +42,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
         const { email, permissions, roles } = response.data
         setUser({ email, permissions, roles })
       }).catch(() => {
-        sigOut()
+        if (process.browser) {
+          sigOut()
+        }
       })
     }
   }, [])
